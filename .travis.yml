@@ -3,7 +3,7 @@ services:
     - docker
 
 before_install:
-    - docker build -t nsuks/react-test -f ./client/Dockerfile.dev .
+    - docker build -t nsuks/react-test -f ./client/Dockerfile.dev ./client
 
 script:
     - docker run -e CI=true nsuks/react-test npm test -- --coverage
