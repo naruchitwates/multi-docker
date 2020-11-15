@@ -3,22 +3,22 @@ services:
     - docker
 
 before_install:
-    - docker build -t nsuks/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t naruchitwate/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true nsuks/react-test npm test -- --coverage
+    - docker run -e CI=true naruchitwate/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t nsuks/multi-client ./client
-    - docker build -t nsuks/multi-nginx ./nginx
-    - docker build -t nsuks/multi-server ./server
-    - docker build -t nsuks/multi-worker ./worker
+    - docker build -t naruchitwate/multi-client ./client
+    - docker build -t naruchitwate/multi-nginx ./nginx
+    - docker build -t naruchitwate/multi-server ./server
+    - docker build -t naruchitwate/multi-worker ./worker
 
     # Login to Docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push to docker hub
-    - docker push nsuks/multi-client
-    - docker push nsuks/multi-nginx
-    - docker push nsuks/multi-server
-    - docker push nsuks/multi-worker
+    - docker push naruchitwate/multi-client
+    - docker push naruchitwate/multi-nginx
+    - docker push naruchitwate/multi-server
+    - docker push naruchitwate/multi-worker
 
